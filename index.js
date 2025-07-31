@@ -28,8 +28,8 @@ app.get('/api/hello', function(req, res) {
 // URL validation function
 function isValidUrl(url) {
   try {
-    const urlPattern = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
-    return urlPattern.test(url);
+    const parsedUrl = new URL(url);
+    return parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:';
   } catch (e) {
     return false;
   }
